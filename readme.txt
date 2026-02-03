@@ -104,10 +104,11 @@ Well, it depends. Let us know what you want, we might consider adding that featu
 == Changelog ==
 
 = v1.1.5 (3 Feb, 2026) =
-- **New:** Add notifications for order statuses: cancelled, failed, and refunded
+- **New:** Added notifications for Woocommerce order statuses: cancelled, failed, and refunded
+- **New:** Added notifications for Dokan Vendor order statuses: cancelled, failed, and refunded
 - **Update:** Appsero updated for WordPress 6.8 compatibility
-- **Update:** Mozart integration
-- **Update:** WordPress 6.9 compatibility
+- **Update:** Mozart is integrated with the plugin
+- **Update:** WordPress 6.9 compatibility added
 
 = v1.1.4 (8 Oct, 2024) =
 - **update:** WordPress 6.6.2 compatibility
