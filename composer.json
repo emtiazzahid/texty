@@ -12,11 +12,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "appsero/client": "dev-develop"
+        "appsero/client": "^v2.0.4"
     },
     "autoload": {
         "psr-4": {
-            "Texty\\": "includes/"
+            "Texty\\": "includes/",
+            "Texty\\Dependencies\\": "dependencies/"
         }
     },
     "require-dev": {
@@ -24,6 +25,7 @@
         "wp-coding-standards/wpcs": "dev-develop",
         "phpcompatibility/php-compatibility": "*",
         "phpcompatibility/phpcompatibility-wp": "*",
+        "coenjacobs/mozart": "^0.7.1",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7"
     },
     "scripts": {
@@ -32,11 +34,42 @@
         ],
         "phpcbf": [
             "phpcbf -p"
+        ],
+        "post-install-cmd": [
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || \"vendor/bin/mozart\" compose",
+            "composer dump-autoload"
+        ],
+        "post-update-cmd": [
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || \"vendor/bin/mozart\" compose",
+            "composer dump-autoload"
         ]
     },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "mozart": {
+            "dep_namespace": "Texty\\Dependencies\\",
+            "dep_directory": "/dependencies/",
+            "classmap_directory": "/dependencies/classes/",
+            "classmap_prefix": "Texty_",
+            "packages": [
+                "appsero/updater",
+                "appsero/client"
+            ],
+            "excluded_packages": [
+                "psr/container"
+            ],
+            "override_autoload": {
+                "google/apiclient": {
+                    "classmap": [
+                        "src/"
+                    ]
+                }
+            },
+            "delete_vendor_directories": true
         }
     }
 }

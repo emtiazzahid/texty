@@ -144,7 +144,7 @@ final class Texty {
      * @return void
      */
     public function appsero_init() {
-        $client = new Appsero\Client( 'd4c17b0f-8f01-4b95-a8de-42b0641eec9a', 'Texty', __FILE__ );
+        $client = new Texty\Dependencies\Appsero\Client( 'd4c17b0f-8f01-4b95-a8de-42b0641eec9a', 'Texty', __FILE__ );
 
         // Active insights
         $client->insights()->init();
