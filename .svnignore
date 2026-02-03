@@ -22,5 +22,4 @@ webpack.config.js
 .prettierrc
 .babelrc
 build
-appsero.json
 node_modules
