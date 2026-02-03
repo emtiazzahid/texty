@@ -2,10 +2,10 @@
 Contributors: tareq1988, wedevs, nizamuddinbabu
 Donate link: https://tareq.co/donate/
 Tags: sms, text, notification, twilio, nexmo, vonage, clickatell, plivo, dokan, woocommerce
-Requires at least: 5.4
-Tested up to: 6.6.2
-Stable tag: 1.1.4
-Requires PHP: 7.3
+Requires at least: 6.8
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,12 @@ Well, it depends. Let us know what you want, we might consider adding that featu
 1. WooCommerce customer notification
 
 == Changelog ==
+
+= v1.1.5 (3 Feb, 2026) =
+- **New:** Add notifications for order statuses: cancelled, failed, and refunded
+- **Update:** Appsero updated for WordPress 6.8 compatibility
+- **Update:** Mozart integration
+- **Update:** WordPress 6.9 compatibility
 
 = v1.1.4 (8 Oct, 2024) =
 - **update:** WordPress 6.6.2 compatibility

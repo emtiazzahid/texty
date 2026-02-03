@@ -5,10 +5,12 @@
  * Plugin URI: https://wordpress.org/plugins/texty/
  * Author: weDevs
  * Author URI: https://wptexty.com/
- * Version: 1.1.4
+ * Version: 1.1.5
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: texty
+ * Requires at least: 6.8
+ * Requires PHP: 7.4
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -24,7 +26,7 @@ final class Texty {
      *
      * @var string
      */
-    private $version = '1.1.4';
+    private $version = '1.1.5';
 
     /**
      * Instances array
