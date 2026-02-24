@@ -47,7 +47,7 @@ yarn readme
 
 # Copy all files
 status "Copying files... ✌️"
-FILES=(texty.php readme.txt dist includes assets languages composer.json composer.lock)
+FILES=(texty.php readme.txt dist dependencies includes assets languages composer.json composer.lock)
 
 for file in ${FILES[@]}; do
     cp -R $file $BUILD_DIR

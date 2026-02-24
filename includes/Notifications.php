@@ -20,6 +20,25 @@ class Notifications {
     private $notifications = [];
 
     /**
+     * Whether built-in notifications have been registered
+     *
+     * @var bool
+     */
+    private $registered = false;
+
+    /**
+     * Register a notification
+     *
+     * @param string $key   Notification identifier
+     * @param string $class Fully qualified class name
+     *
+     * @return void
+     */
+    public function register( $key, $class ) {
+        $this->notifications[ $key ] = $class;
+    }
+
+    /**
      * Get a notification class
      *
      * @param string $key
@@ -42,34 +61,23 @@ class Notifications {
      * @return array
      */
     public function all() {
-        if ( $this->notifications ) {
-            return $this->notifications;
+        if ( ! $this->registered ) {
+            $this->notifications = [
+                'registration' => __NAMESPACE__ . '\Notifications\WP\Registration',
+                'comment'      => __NAMESPACE__ . '\Notifications\WP\Comment',
+            ];
+
+            /**
+             * Fires to allow registration of custom notifications.
+             *
+             * @param Notifications $manager The notifications manager instance
+             */
+            do_action( 'texty_register_notifications', $this );
+
+            $this->registered = true;
         }
 
-        $notifications = [
-            'registration' => __NAMESPACE__ . '\Notifications\WP\Registration',
-            'comment'      => __NAMESPACE__ . '\Notifications\WP\Comment',
-        ];
-
-        if ( class_exists( 'WooCommerce' ) ) {
-            // WC Admin
-            $notifications['order_admin_processing'] = __NAMESPACE__ . '\Notifications\WC\ProcessingAdmin';
-            $notifications['order_admin_complete']   = __NAMESPACE__ . '\Notifications\WC\CompleteAdmin';
-
-            // WC Customers
-            $notifications['order_customer_hold']       = __NAMESPACE__ . '\Notifications\WC\HoldCustomer';
-            $notifications['order_customer_processing'] = __NAMESPACE__ . '\Notifications\WC\ProcessingCustomer';
-            $notifications['order_customer_complete']   = __NAMESPACE__ . '\Notifications\WC\CompleteCustomer';
-        }
-
-        if ( class_exists( 'WeDevs_Dokan' ) ) {
-            $notifications['order_dokan_processing'] = __NAMESPACE__ . '\Notifications\Dokan\ProcessingVendor';
-            $notifications['order_dokan_complete']   = __NAMESPACE__ . '\Notifications\Dokan\CompleteVendor';
-        }
-
-        $this->notifications = apply_filters( 'texty_available_notifications', $notifications );
-
-        return $this->notifications;
+        return apply_filters( 'texty_available_notifications', $this->notifications );
     }
 
     /**
